@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <com.tushar.spen_helper.CustomSwitchPreference 
+            android:title="@string/enable_title"
+            android:defaultValue="false"
+            android:key="enable" />
+        <PreferenceScreen android:title="@string/noti_title">
+        	<com.tushar.spen_helper.CustomSwitchPreference 
+        	    android:title="@string/noti_sw_title"
+                android:summary="@string/noti_sw_summary"
+                android:defaultValue="false"
+                android:key="notifpref" />
+        	<EditTextPreference 
+        	    android:title="@string/noti_text_title"
+                android:dialogTitle="@string/noti_dia_title"
+                android:key="notiftext" />
+        	<com.tushar.spen_helper.CustomSwitchPreference 
+        	    android:title="@string/noti_trans_title"
+                android:summary="@string/noti_trans_summary"
+                android:defaultValue="false"
+                android:key="transparent" />
+        	<com.tushar.spen_helper.CustomSwitchPreference 
+        	    android:title="@string/enable_qb"
+                android:defaultValue="false"
+                android:key="qben"/>
+        	<PreferenceScreen
+        	    android:key="sqb"
+             	android:title="@string/conf_sqb"
+             	android:persistent="false">
+             	<Preference android:key="sqbapp1" />
+             	<Preference android:key="sqbapp2" />
+             	<Preference android:key="sqbapp3" />
+             	<Preference android:key="sqbapp4" />
+             	<Preference android:key="sqbapp5" />
+             	<Preference android:key="sqbapp6" />
+        	</PreferenceScreen>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="@string/al"
+        	android:key="al">
+        	<com.tushar.spen_helper.CustomSwitchPreference 
+        	    android:title="@string/al_title"
+                android:defaultValue="false"
+                android:key="cbpref" />
+        	<com.tushar.spen_helper.CustomSwitchPreference 
+        	    android:title="@string/dd_call"
+                android:defaultValue="true"
+                android:key="ddcall" />
+        	<Preference 
+        	    android:title="@string/blacklist"
+                android:key="blacklist" />
+        	<Preference 
+        	    android:title="@string/al_app_title"
+                android:key="app_selection" />
+        	<com.tushar.spen_helper.CustomSwitchPreference
+            	android:title="@string/sm_launch"
+            	android:summary="@string/s_sm_summary"
+            	android:key="soff_al_enable"
+            	android:defaultValue="false" />
+        	<Preference 
+            	android:title="@string/sm_app_title"
+            	android:key="soff_al_app" />
+        </PreferenceScreen>
+        
+        <PreferenceScreen android:title="@string/spen_att_act">
+            <com.tushar.spen_helper.CustomSwitchPreference
+                android:title="@string/al_title"
+                android:key="spen_att_act_enable"
+                android:defaultValue="false" />
+            <Preference
+                android:title="@string/al_app_title"
+                android:key="spen_att_act" />
+        </PreferenceScreen>
+        <PreferenceScreen 
+        	android:title="@string/sound"
+        	android:key="s_cat">
+        	<com.tushar.spen_helper.CustomSwitchPreference 
+        	    android:title="@string/sound_title"
+                android:summary="@string/sound_summary"
+                android:defaultValue="false"
+                android:key="sounden" />
+            <com.tushar.spen_helper.CustomSwitchPreference
+                android:title="@string/sound_channel_title"
+                android:summary="@string/sound_channel_summary"
+                android:defaultValue="false"
+                android:key="sound_channel" />
+        	<Preference 
+        	    android:title="@string/det_s"
+                android:key="det_s" />
+        	<Preference 
+        	    android:title="@string/ins_s"
+                android:key="ins_s" />
+        	<com.tushar.spen_helper.SeekBarPreference
+            	android:key="volume"
+            	android:title="@string/volume"
+            	android:defaultValue="10"
+            	android:text="0%"
+            	android:max="10"
+            	android:icon="@drawable/sound" />
+        </PreferenceScreen>
+        <PreferenceScreen android:title="@string/auto_lock">
+            <com.tushar.spen_helper.CustomSwitchPreference 
+                android:title="@string/enable_title"
+                android:summary="@string/auto_lock_summary"
+                android:defaultValue="false"
+                android:key="auto_lock"/>
+            <com.tushar.spen_helper.CustomSwitchPreference 
+                android:title="@string/smart_lock"
+                android:summary="@string/smart_lock_summary"
+                android:defaultValue="false"
+                android:key="smart_lock"/>
+        </PreferenceScreen>
+        <PreferenceScreen 
+            android:key="button_features"
+            android:title="@string/button_features">
+            <com.tushar.spen_helper.CustomSwitchPreference
+                android:title="@string/button_single_title"
+                android:key="button_single_enable"
+                android:defaultValue="false" />
+            <Preference
+                android:title="@string/al_app_title"
+                android:key="button_single" />
+            <com.tushar.spen_helper.CustomSwitchPreference
+                android:title="@string/button_double_title"
+                android:key="button_double_enable"
+                android:defaultValue="false" />
+            <Preference
+                android:title="@string/al_app_title"
+                android:key="button_double" />
+            <com.tushar.spen_helper.CustomSwitchPreference
+                android:title="@string/button_long_title"
+                android:key="button_long_enable"
+                android:defaultValue="false" />
+            <Preference
+                android:title="@string/al_app_title"
+                android:key="button_long" />
+            <Preference
+                android:title="@string/button_bl_msg"
+                android:key="button_bl" />
+        </PreferenceScreen>
+</PreferenceScreen>

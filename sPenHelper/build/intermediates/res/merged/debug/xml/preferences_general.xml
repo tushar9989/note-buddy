@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:title="@string/pro"
+        		android:key="pro" />
+    
+    <com.tushar.spen_helper.CustomSwitchPreference android:title="@string/dev_admin"
+                            android:summary="@string/dev_admin_summary"
+                            android:defaultValue="false"
+                            android:key="devadmin" />
+    
+    <com.tushar.spen_helper.CustomSwitchPreference android:title="@string/icon_theme_en_title"
+                            android:defaultValue="false"
+                            android:key="icon_theme_en" />
+    
+    <Preference android:title="@string/icon_theme"
+                android:key="theme"
+                android:icon="@drawable/transparent"/>
+    
+    <Preference android:title="@string/guide"
+                android:summary="@string/guide_summary"
+                android:key="guide"
+                android:icon="@drawable/ic_action_help"/>
+        
+    <Preference android:title="@string/icon"
+                android:summary="@string/icon_summary"
+                android:key="icon"
+                android:icon="@drawable/ic_launcher"/>
+    
+    <Preference android:title="@string/review"
+        		android:summary="@string/review_summary"
+        		android:key="review" 
+        		android:icon="@drawable/rating"/>
+        <Preference android:title="@string/version"
+                    android:key="version" 
+                    android:selectable="false">
+        </Preference>
+</PreferenceScreen>

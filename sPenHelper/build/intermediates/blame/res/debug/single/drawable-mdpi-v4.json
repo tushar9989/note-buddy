@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_chooser.png",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\exploded-aar\\SPenHelper\\aFileChooser\\unspecified\\res\\drawable-mdpi-v4\\ic_chooser.png"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_file.png",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\exploded-aar\\SPenHelper\\aFileChooser\\unspecified\\res\\drawable-mdpi-v4\\ic_file.png"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_folder.png",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\exploded-aar\\SPenHelper\\aFileChooser\\unspecified\\res\\drawable-mdpi-v4\\ic_folder.png"
+    }
+]

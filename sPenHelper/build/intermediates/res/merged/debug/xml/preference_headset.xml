@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <com.tushar.spen_helper.CustomSwitchPreference 
+        android:title="@string/enable_title"
+        android:defaultValue="false"
+        android:key="henable" />
+    <PreferenceScreen android:title="@string/noti_title">
+        <com.tushar.spen_helper.CustomSwitchPreference 
+            android:title="@string/noti_sw_title"
+            android:summary="@string/noti_sw_summary"
+            android:defaultValue="false"
+            android:key="hnotifpref" />
+        <EditTextPreference 
+            android:title="@string/noti_text_title"
+            android:dialogTitle="@string/noti_dia_title"
+            android:key="hnotiftext" />
+        <com.tushar.spen_helper.CustomSwitchPreference 
+            android:title="@string/noti_trans_title"
+            android:summary="@string/noti_trans_summary"
+            android:defaultValue="false"
+            android:key="htransparent" />
+        <com.tushar.spen_helper.CustomSwitchPreference 
+            android:title="@string/enable_qb"
+            android:defaultValue="false"
+            android:key="hqben" />
+        <PreferenceScreen
+             android:key="hqb"
+             android:title="@string/conf_hqb"
+             android:persistent="false" >
+             <Preference android:key="hqbapp1" />
+             <Preference android:key="hqbapp2" />
+             <Preference android:key="hqbapp3" />
+             <Preference android:key="hqbapp4" />
+             <Preference android:key="hqbapp5" />
+             <Preference android:key="hqbapp6" />
+        </PreferenceScreen>
+    </PreferenceScreen>
+    <PreferenceScreen 
+        android:title="@string/al"
+        android:key="al">
+        <com.tushar.spen_helper.CustomSwitchPreference 
+            android:title="@string/al_title"
+            android:defaultValue="false"
+            android:key="hcbpref" />
+        <Preference 
+            android:title="@string/blacklist"
+            android:key="blacklist" />
+        <Preference 
+            android:title="@string/al_app_title"
+            android:key="happ_selection" />
+        <com.tushar.spen_helper.CustomSwitchPreference
+            android:title="@string/sm_launch"
+            android:summary="@string/h_sm_summary"
+            android:key="hoff_al_enable"
+            android:defaultValue="false" />
+        <Preference 
+            android:title="@string/sm_app_title"
+            android:key="hoff_al_app" />
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/headset_rem_act">
+        <com.tushar.spen_helper.CustomSwitchPreference 
+            android:title="@string/al_title"
+            android:defaultValue="false"
+            android:key="headset_rem_act_enable" />
+        <Preference 
+            android:title="@string/al_app_title"
+            android:key="headset_rem_act" />
+    </PreferenceScreen>
+</PreferenceScreen>

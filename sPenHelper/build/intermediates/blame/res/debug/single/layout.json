@@ -1,0 +1,82 @@
+[
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\icon_theme_row.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\icon_theme_row.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\row.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\row.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\file.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\exploded-aar\\SPenHelper\\aFileChooser\\unspecified\\res\\layout\\file.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\row_app_selector.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\row_app_selector.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\chooser.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\exploded-aar\\SPenHelper\\aFileChooser\\unspecified\\res\\layout\\chooser.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\activity_app_selector.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\activity_app_selector.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\activity_bhadva.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\activity_bhadva.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\blacklist.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\blacklist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\main_list.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\main_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\layout_appinfo.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\layout_appinfo.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\launcher_item.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\launcher_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\main_edit.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\main_edit.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\activity_auto_launch.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\activity_auto_launch.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\multi_item_layout.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\multi_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\quick_bar_free.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\quick_bar_free.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\launcher_layout.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\launcher_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\quick_notification_bar.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\quick_notification_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\build\\intermediates\\res\\merged\\debug\\layout\\selector_item.xml",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\sPenHelper\\src\\main\\res\\layout\\selector_item.xml"
+    }
+]

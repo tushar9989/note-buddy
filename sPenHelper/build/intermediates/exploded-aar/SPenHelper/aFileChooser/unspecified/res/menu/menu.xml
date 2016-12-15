@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/action_select"
+          android:title="Select"
+          android:showAsAction="always"/>
+    <item android:id="@+id/set_default"
+          android:title="Set Default Path"
+          android:showAsAction="always" />
+    <item android:id="@+id/reset_default"
+          android:title="Reset Default Path" 
+          android:showAsAction="always"/>
+</menu>

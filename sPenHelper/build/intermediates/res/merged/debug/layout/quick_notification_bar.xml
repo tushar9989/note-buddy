@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:layout_width="match_parent" android:layout_height="65.0dip">
+        <LinearLayout android:gravity="left" android:orientation="horizontal" android:background="@drawable/transparent" android:layout_width="match_parent" android:layout_height="50.0dip">
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center">
+                <ImageView android:id="@+id/icon1" android:background="@drawable/selector_with_transparency" android:padding="7.0dip" android:focusable="true" android:layout_width="65.0dip" android:layout_height="match_parent" android:scaleType="fitCenter"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center">
+                <ImageView android:id="@+id/icon2" android:background="@drawable/selector_with_transparency" android:padding="7.0dip" android:focusable="true" android:layout_width="65.0dip" android:layout_height="match_parent" android:scaleType="fitCenter"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center">
+                <ImageView android:id="@+id/icon3" android:background="@drawable/selector_with_transparency" android:padding="7.0dip" android:focusable="true" android:layout_width="65.0dip" android:layout_height="match_parent" android:scaleType="fitCenter"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center">
+                <ImageView android:id="@+id/icon4" android:background="@drawable/selector_with_transparency" android:padding="7.0dip" android:focusable="true" android:layout_width="65.0dip" android:layout_height="match_parent" android:scaleType="fitCenter"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center">
+                <ImageView android:id="@+id/icon5" android:background="@drawable/selector_with_transparency" android:padding="7.0dip" android:focusable="true" android:layout_width="65.0dip" android:layout_height="match_parent" android:scaleType="fitCenter"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center">
+                <ImageView android:id="@+id/icon6" android:background="@drawable/selector_with_transparency" android:padding="7.0dip" android:focusable="true" android:layout_width="65.0dip" android:layout_height="match_parent" android:scaleType="fitCenter"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

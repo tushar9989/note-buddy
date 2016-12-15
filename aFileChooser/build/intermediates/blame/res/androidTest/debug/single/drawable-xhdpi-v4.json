@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ic_file.png",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_file.png"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ic_folder.png",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_folder.png"
+    },
+    {
+        "merged": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\aFileChooser\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ic_chooser.png",
+        "source": "C:\\Users\\Tushar\\AndroidstudioProjects\\SPenHelper\\aFileChooser\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_chooser.png"
+    }
+]
