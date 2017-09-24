@@ -35,6 +35,8 @@
     <string name="button_single_title">Single Press</string>
     <string name="conf_hqb">Configurar Quickbar de Auriculares</string>
     <string name="conf_sqb">Configurar Quickbar S Pen</string>
+    <string name="confirm_action">Confirm Action</string>
+    <string name="confirm_remove_body">Are you sure you want to remove</string>
     <string name="dd_call">Desact. en llamadas</string>
     <string name="deleted">Borrado</string>
     <string name="det_s">Sonido sacar S-pen</string>
@@ -83,6 +85,7 @@
     <string name="review_summary">Su opinion me ayuda a mejorar la aplicacion</string>
     <string name="s_sm_summary">Si esta activado se lanzara automaticamente la aplicacion si el dispositivo estaba bloqueado cuando saque el S Pen</string>
     <string name="sel_sound">Selecciona sonido</string>
+    <string name="sel_sound_ext">Select sound (External)</string>
     <string name="shade_guide">-If you want to use the same Shade at another place just enter the same name\n-Long clicking an item in the shade will delete it</string>
     <string name="shade_name">Selecciona nombre</string>
     <string name="shortcut_menu">Acceso directo</string>
@@ -105,6 +108,7 @@
     <string name="theme_compat_loading">This is a one time process to enable compatibility with the Icon Theme feature.</string>
     <string name="theme_sel">Theme selected</string>
     <string name="title_activity_app_selector">Selector aplicacion</string>
+    <string name="title_activity_auto_launch">AutoLaunchActivity</string>
     <string name="title_activity_blacklist">Blacklist</string>
     <string name="title_activity_edit">EditActivity</string>
     <string name="title_activity_icon_theme">Icon Theme</string>

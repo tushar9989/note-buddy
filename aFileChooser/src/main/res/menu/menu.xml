@@ -7,6 +7,9 @@
           android:title="Set Default Path"
           android:showAsAction="always" />
     <item android:id="@+id/reset_default"
-          android:title="Reset Default Path" 
+          android:title="Reset Default Path"
           android:showAsAction="always"/>
+    <item android:id="@+id/load_path"
+        android:title="Load Path"
+        android:showAsAction="always"/>
 </menu>

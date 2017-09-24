@@ -35,6 +35,8 @@
     <string name="button_single_title">Single Press</string>
     <string name="conf_hqb">Verstel Gehoorstuk Kitskeuse</string>
     <string name="conf_sqb">Verstel S Pen Kitskeuse</string>
+    <string name="confirm_action">Confirm Action</string>
+    <string name="confirm_remove_body">Are you sure you want to remove</string>
     <string name="dd_call">Deaktiveer tydens oproep</string>
     <string name="deleted">Verwyder</string>
     <string name="det_s">Buite klank</string>
@@ -83,6 +85,7 @@
     <string name="review_summary">You verwysings (in Engels) sal my help om aplikasie verder te verbeter</string>
     <string name="s_sm_summary">Indien gedeaktiveer is, sal die gekose aplikasie loods as toestel gesluit is en waar S Pen buite toestel is</string>
     <string name="sel_sound">Kies `n klank</string>
+    <string name="sel_sound_ext">Select sound (External)</string>
     <string name="shade_guide">-As jy dieselfde Skadu op `n ander plek wil gebruik, sleutel net dieselfde naam in \n-Langklik `n item en trek dit na die kruis toe om uittevee.\n-Langklik `n item en trek dit oor enige ander item om dit in posisie te plaas binne in die stroke.</string>
     <string name="shade_name">Kies naam</string>
     <string name="shortcut_menu">Kortpad</string>
@@ -105,6 +108,7 @@
     <string name="theme_compat_loading">Hierdie is `n eenmalige proses om aanpasbaarheid met die Ikon Tema funksies te aktiveer.</string>
     <string name="theme_sel">Tema Geselekteer</string>
     <string name="title_activity_app_selector">Aplikasie selekteerder</string>
+    <string name="title_activity_auto_launch">AutoLaunchActivity</string>
     <string name="title_activity_blacklist">Swartlys</string>
     <string name="title_activity_edit">WysigAktiwiteit</string>
     <string name="title_activity_icon_theme">Ikon Tema</string>

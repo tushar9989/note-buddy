@@ -20,6 +20,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class SPenService extends AccessibilityService {
@@ -161,7 +162,7 @@ public class SPenService extends AccessibilityService {
 					mNotificationManager.cancel(1);
 
 					//Launch list Testing
-                    Utilities.autoLaunch(SPenService.this, "test_multi3", "spen_att_act_enable", false);
+                    //Utilities.autoLaunch(SPenService.this, "test_multi3", "spen_att_act_enable", false);
 
 					//Tasker
 					SharedPreferences.Editor editor = settings.edit();
@@ -261,8 +262,9 @@ public class SPenService extends AccessibilityService {
 			if(key != null && !(key.equals("")))
 			{
 				try {
+					FileInputStream is2 = new FileInputStream(key);
 					mp.reset();
-					mp.setDataSource(key);
+					mp.setDataSource(is2.getFD());
 					int currVolume = pref.getInt("volume", 10);
 					float log1 = (float)(Math.log(10 - currVolume) / Math.log(10));
 					if(pref.getBoolean("sound_channel", false))

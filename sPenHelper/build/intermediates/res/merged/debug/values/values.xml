@@ -95,7 +95,8 @@
     <string name="review">Review on Google Play</string>
     <string name="review_summary">Your review\'s will help me improve this application further</string>
     <string name="s_sm_summary">If enabled the selected application will be launched if the phone is locked when the S Pen is detached</string>
-    <string name="sel_sound">Select sound</string>
+    <string name="sel_sound">Select sound (In built)</string>
+    <string name="sel_sound_ext">Select sound (External)</string>
     <string name="shade_guide">-If you want to use the same Shade at another place just enter the same name\n-Long click an item and drag it to the cross to delete it.\n-Long click an item and drag it over any other item to move it to that position in the grid.</string>
     <string name="shade_name">Select name</string>
     <string name="shortcut_menu">Shortcut</string>

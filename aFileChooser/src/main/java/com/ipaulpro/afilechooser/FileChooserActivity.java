@@ -18,24 +18,32 @@ package com.ipaulpro.afilechooser;
 
 import java.io.File;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentManager.BackStackEntry;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 /**
@@ -50,7 +58,8 @@ public class FileChooserActivity extends FragmentActivity implements
 		OnBackStackChangedListener {
 
 	public static final String PATH = "path";
-	public static String EXTERNAL_BASE_PATH = "/";
+	static final int permissionRequestCode = 121;
+	public static String EXTERNAL_BASE_PATH = /*Environment.getExternalStorageDirectory().getAbsolutePath()*/"/mnt";
 	private FragmentManager mFragmentManager;
 	private static boolean isValid = false;
 	private static File selectedFile;
@@ -62,18 +71,27 @@ public class FileChooserActivity extends FragmentActivity implements
 			finishWithResult(null);
 		}
 	};
-	
+
 	private String mPath;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.chooser);
 
+		if (ContextCompat.checkSelfPermission(this,
+				Manifest.permission.READ_EXTERNAL_STORAGE)
+				!= PackageManager.PERMISSION_GRANTED) {
+
+			ActivityCompat.requestPermissions(this,
+					new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+					permissionRequestCode);
+		}
+
 		mFragmentManager = getSupportFragmentManager();
 		mFragmentManager.addOnBackStackChangedListener(this);
-		EXTERNAL_BASE_PATH = PreferenceManager.getDefaultSharedPreferences(this).getString("path", "/");
+		EXTERNAL_BASE_PATH = PreferenceManager.getDefaultSharedPreferences(this).getString("path", /*Environment.getExternalStorageDirectory().getAbsolutePath()*/"/mnt");
 		//if (savedInstanceState == null) {
 			mPath = EXTERNAL_BASE_PATH;
 			addFragment(mPath);
@@ -82,6 +100,20 @@ public class FileChooserActivity extends FragmentActivity implements
 		//}
 
 		setTitle(mPath);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+										   String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case permissionRequestCode: {
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+					replaceFragment(mPath);
+				}
+			}
+		}
 	}
 
 	@Override
@@ -99,7 +131,7 @@ public class FileChooserActivity extends FragmentActivity implements
 	/*@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		
+
 		outState.putString(PATH, mPath);
 	}*/
 
@@ -113,13 +145,13 @@ public class FileChooserActivity extends FragmentActivity implements
 					.getBackStackEntryAt(count - 1);
 			mPath = fragment.getName();
 		}
-		
+
 		setTitle(mPath);
 	}
 
 	/**
 	 * Add the initial Fragment with given path.
-	 * 
+	 *
 	 * @param path The absolute path of the file (directory) to display.
 	 */
 	private void addFragment(String path) {
@@ -131,7 +163,7 @@ public class FileChooserActivity extends FragmentActivity implements
 	/**
 	 * "Replace" the existing Fragment with a new one using given path.
 	 * We're really adding a Fragment to the back stack.
-	 * 
+	 *
 	 * @param path The absolute path of the file (directory) to display.
 	 */
 	private void replaceFragment(String path) {
@@ -144,7 +176,7 @@ public class FileChooserActivity extends FragmentActivity implements
 
 	/**
 	 * Finish this Activity with a result code and URI of the selected file.
-	 * 
+	 *
 	 * @param file The file selected.
 	 */
 	private void finishWithResult(File file) {
@@ -154,22 +186,22 @@ public class FileChooserActivity extends FragmentActivity implements
 			mp.reset();
 			finish();
 		} else {
-			setResult(RESULT_CANCELED);	
+			setResult(RESULT_CANCELED);
 			mp.reset();
 			finish();
 		}
 	}
-	
+
 	/**
 	 * Called when the user selects a File
-	 * 
+	 *
 	 * @param file The file that was selected
 	 */
 	protected void onFileSelected(File file) {
 		if (file != null) {
 			mPath = file.getAbsolutePath();
 			isValid = false;
-			
+
 			if (file.isDirectory()) {
 				replaceFragment(mPath);
 			} else {
@@ -194,14 +226,14 @@ public class FileChooserActivity extends FragmentActivity implements
 				}
 				catch(Exception e)
 				{
-					
+
 				}
 			}
 		} else {
 			Toast.makeText(FileChooserActivity.this, R.string.error_selecting_file, Toast.LENGTH_SHORT).show();
 		}
 	}
-	
+
 	/**
 	 * Register the external storage BroadcastReceiver.
 	 */
@@ -217,14 +249,14 @@ public class FileChooserActivity extends FragmentActivity implements
 	private void unregisterStorageListener() {
 		unregisterReceiver(mStorageListener);
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.menu, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    int id = item.getItemId();
@@ -250,11 +282,47 @@ public class FileChooserActivity extends FragmentActivity implements
 	    if(id == R.id.reset_default)
 	    {
 	    	SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(FileChooserActivity.this).edit();
-	    	edit.putString("path", "/");
+	    	edit.putString("path", /*Environment.getExternalStorageDirectory().getAbsolutePath()*/ "/mnt");
+			replaceFragment("/mnt");
 	    	edit.commit();
 	    	Toast.makeText(FileChooserActivity.this, "Default Path has been Reset", Toast.LENGTH_LONG).show();
 	    	return true;
 	    }
+		if(id == R.id.load_path)
+		{
+			final String[] inputString = {""};
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Enter Directory Path");
+
+			final EditText input = new EditText(this);
+			input.setInputType(InputType.TYPE_CLASS_TEXT);
+			builder.setView(input);
+
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					inputString[0] = input.getText().toString();
+					File file = new File(inputString[0]);
+					if(file.exists())
+					{
+						replaceFragment(inputString[0]);
+					}
+					else
+					{
+						Toast.makeText(FileChooserActivity.this, "Invalid Path", Toast.LENGTH_LONG).show();
+					}
+				}
+			});
+			builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+			});
+
+			builder.show();
+			return true;
+		}
 	    return super.onOptionsItemSelected(item);
 	}
 	

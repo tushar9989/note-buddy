@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 		{
 			SharedPreferences.Editor editor = pref.edit();
 			int nagCount = pref.getInt("nagCount", 0);
-			if(nagCount == 5) {
+			if(nagCount == 3) {
 				editor.putInt("nagCount", 0);
                 editor.apply();
 				AlertDialog.Builder builderdonate = new AlertDialog.Builder(this);

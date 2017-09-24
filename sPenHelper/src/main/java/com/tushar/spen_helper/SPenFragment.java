@@ -1,12 +1,16 @@
 package com.tushar.spen_helper;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -14,7 +18,17 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import static android.content.ContentValues.TAG;
 
 public class SPenFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
     static final int REQUEST_DETACH = 6384;
@@ -151,7 +165,7 @@ public class SPenFragment extends PreferenceFragment implements OnSharedPreferen
         spen_att_act.setOnPreferenceClickListener(new OnPreferenceClickListener() {
             public boolean onPreferenceClick(final Preference preference) {
                 Utilities.globalChooser(getActivity(), "spen_att_act", REQUEST_AL_ATT, preference, SPenFragment.this);
-                LaunchableItem test = new LaunchableItem("test_multi3");
+                /*LaunchableItem test = new LaunchableItem("test_multi3");
                 test.intent = new Intent(SPenFragment.this.getActivity(), AutoLaunchActivity.class);
                 test.title = "Test";
                 test.intent.putExtra("listID", "test_multi3");
@@ -159,7 +173,7 @@ public class SPenFragment extends PreferenceFragment implements OnSharedPreferen
                 test.bitmap = BitmapFactory.decodeResource(SPenFragment.this.getResources(), R.drawable.app_launcher);
                 SPenFragment.this.startActivity(test.intent);
                 if(!test.save(SPenFragment.this.getActivity()))
-                    Toast.makeText(SPenFragment.this.getActivity(), "Save failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SPenFragment.this.getActivity(), "Save failed", Toast.LENGTH_SHORT).show();*/
                 return false;
             }
         });
@@ -290,25 +304,54 @@ public class SPenFragment extends PreferenceFragment implements OnSharedPreferen
         }
     }
 
+    public static void CopyStream(InputStream is, OutputStream os) {
+        final int buffer_size = 4096;
+        try {
+            byte[] bytes = new byte[buffer_size];
+            for (int count=0;count!=-1;) {
+                count = is.read(bytes);
+                if(count != -1) {
+                    os.write(bytes, 0, count);
+                }
+            }
+            os.flush();
+            is.close();
+            os.close();
+        } catch (Exception ex) {
+            Log.e(TAG,"CS "+ex);
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_DETACH || requestCode == REQUEST_ATTACH) {
                 MediaPlayer mp = new MediaPlayer();
-                if ((data.getData().getPath() != null)) {
+                if (data.getData() != null) {
                     try {
-                        mp.setDataSource(data.getData().getPath());
+                        InputStream is = getActivity().getContentResolver().openInputStream(data.getData());
+
+                        String filename = requestCode == REQUEST_ATTACH ? "attachSound" : "detachSound";
+
+                        File file = new File(getActivity().getExternalFilesDir(
+                                null), filename);
+
+                        CopyStream(is, new FileOutputStream(file));
+
+                        FileInputStream is2 = new FileInputStream(file.getAbsolutePath());
+
+                        mp.setDataSource(is2.getFD());
                         mp.prepare();
                         if (mp.getDuration() > 10000) {
                             Toast.makeText(getActivity(), R.string.sound_too_long, Toast.LENGTH_LONG).show();
                         } else {
                             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
                             if (requestCode == REQUEST_DETACH) {
-                                editor.putString("det_s", data.getData().getPath());
-                                det_s.setSummary(data.getData().getPath());
+                                editor.putString("det_s", file.getAbsolutePath());
+                                det_s.setSummary(file.getAbsolutePath());
                             } else {
-                                editor.putString("ins_s", data.getData().getPath());
-                                ins_s.setSummary(data.getData().getPath());
+                                editor.putString("ins_s", file.getAbsolutePath());
+                                ins_s.setSummary(file.getAbsolutePath());
                             }
                             editor.apply();
                             //Toast.makeText(getActivity(),R.string.sound_sel, Toast.LENGTH_SHORT).show();

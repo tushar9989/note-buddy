@@ -387,12 +387,19 @@ public class Utilities {
 		build.setTitle(R.string.menu_title);
 		final myListItem items[] = {
 				new myListItem(R.drawable.new_icon,act.getString(R.string.sel_sound)),
+				new myListItem(R.drawable.new_icon,act.getString(R.string.sel_sound_ext)),
 				new myListItem(R.drawable.ic_action_cancel,act.getString(R.string.rem_sound))
 		};
 		AppAdapter adapter = new AppAdapter(act,items,act);
 		build.setAdapter(adapter, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int position) {
-				if(items[position].name.equals(act.getString(R.string.sel_sound)))
+				if(items[position].name.equals(act.getString(R.string.sel_sound_ext)))
+				{
+					Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+					i.setType("audio/*");
+					frag.startActivityForResult(i, requestCode);
+				}
+				else if(items[position].name.equals(act.getString(R.string.sel_sound)))
 				{
 					Intent i = new Intent(act,FileChooserActivity.class);
 					frag.startActivityForResult(i, requestCode);

@@ -113,5 +113,9 @@
     <string name="act_tb_s">Toggle Touchscreen Block</string>
     <string name="act_tb_k">Toggle Softkeys Block</string>
     <string name="act_tb_both">Toggle Both Block</string>
+    <string name="sel_sound_ext">Select sound (External)</string>
+    <string name="title_activity_auto_launch">AutoLaunchActivity</string>
+    <string name="confirm_action">Confirm Action</string>
+    <string name="confirm_remove_body">Are you sure you want to remove</string>
 
 </resources>

@@ -56,7 +56,8 @@
     <string name="menu_title">Select option</string>
     <string name="app_removed">Application successfully removed</string>
     <string name="menu_blank">Blank</string>
-    <string name="sel_sound">Select sound</string>
+    <string name="sel_sound">Select sound (In built)</string>
+    <string name="sel_sound_ext">Select sound (External)</string>
     <string name="rem_sound">Remove existing sound</string>
     <string name="sound_removed">Sound removed successfully</string>
     <string name="pro_encourage">If you like this application, please consider buying the Pro version.\nThe following features will be unlocked:\n\n-Application selected for auto-launch will close when S Pen is inserted/Headset is removed\n-Application Shade will be dismissed when S Pen is inserted/Headset is removed\n-Application Shades can be nested\n-Capacity of QuickBar will increase to 6\n-Application limits from the Application Shade and Blacklist will be lifted\n-Volume of the S Pen insert/detach sounds can be adjusted\n-Smart Launch mode will be available which allows you to select a separate Application/Shortcut/Action to launch if the phone is locked\n-Nova/ADW Icon Packs can be applied</string>
