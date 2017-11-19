@@ -12,3 +12,4 @@ gradlew
 gradlew.bat
 import-summary.txt
 local.properties
+sPenHelper/lint.xml
