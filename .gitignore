@@ -7,3 +7,8 @@ aFileChooser/aFileChooser.iml
 aFileChooser/build/
 sPenHelper/build/
 build/
+gradle/
+gradlew
+gradlew.bat
+import-summary.txt
+local.properties
