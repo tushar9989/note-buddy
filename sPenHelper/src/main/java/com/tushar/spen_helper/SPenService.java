@@ -283,12 +283,6 @@ public class SPenService extends Service {
 		{
 			List<String> packages = new ArrayList<>();
 
-			if(needPermissionForBlocking(ctx))
-			{
-				Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-				ctx.startActivity(intent);
-			}
-
 			if(!needPermissionForBlocking(ctx))
 			{
 				long ts = System.currentTimeMillis();
@@ -306,14 +300,13 @@ public class SPenService extends Service {
 			}
 			else
 			{
-				Toast.makeText(ctx, "Usage Stats permission needed for this feature!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(ctx, "Usage Stats permission needed for this feature! Please enable from the general tab.", Toast.LENGTH_SHORT).show();
 			}
 
 			return packages;
 		}
 		else
 		{
-			Toast.makeText(ctx, "Please upgrade your android version to be able to use this feature", Toast.LENGTH_SHORT).show();
 			return new ArrayList<>();
 		}
 	}

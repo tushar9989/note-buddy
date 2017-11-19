@@ -117,5 +117,7 @@
     <string name="title_activity_auto_launch">AutoLaunchActivity</string>
     <string name="confirm_action">Confirm Action</string>
     <string name="confirm_remove_body">Are you sure you want to remove</string>
+    <string name="usage_access">Usage Access</string>
+    <string name="usage_access_summary">This permission is needed for the auto-close and blacklist feature.</string>
 
 </resources>

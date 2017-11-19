@@ -19,9 +19,11 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.provider.Settings;
+import android.util.Log;
 
 public class GeneralFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
-	CustomSwitchPreference devadmin,icon_theme_en;
+	CustomSwitchPreference devadmin,icon_theme_en, usageAccess;
 	static int REQUEST_ENABLE = 14612584;
 	Preference theme;
 	
@@ -36,6 +38,7 @@ public class GeneralFragment extends PreferenceFragment implements OnSharedPrefe
         theme = (Preference) findPreference("theme");
         devadmin = (CustomSwitchPreference) findPreference("devadmin");
         icon_theme_en = (CustomSwitchPreference) findPreference("icon_theme_en");
+		usageAccess = (CustomSwitchPreference) findPreference("usage_access");
         try {
 			PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
 			version.setSummary(pInfo.versionName);
@@ -129,6 +132,7 @@ public class GeneralFragment extends PreferenceFragment implements OnSharedPrefe
     {
     	super.onResume();
     	devadmin.setChecked(DeviceAdmin.isActive(getActivity()));
+		usageAccess.setChecked(!SPenService.needPermissionForBlocking(this.getActivity()));
     	getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
     
@@ -140,34 +144,48 @@ public class GeneralFragment extends PreferenceFragment implements OnSharedPrefe
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		ComponentName mAdminName = new ComponentName(getActivity(), DeviceAdmin.class);
-		DevicePolicyManager mDPM = (DevicePolicyManager)getActivity().getSystemService(Context.DEVICE_POLICY_SERVICE);
-		
-		if(key.equals("devadmin"))
+		try
 		{
-			if(!DeviceAdmin.isActive(getActivity()))
+			ComponentName mAdminName = new ComponentName(getActivity(), DeviceAdmin.class);
+			DevicePolicyManager mDPM = (DevicePolicyManager)getActivity().getSystemService(Context.DEVICE_POLICY_SERVICE);
+
+			if(key.equals("devadmin"))
 			{
-				Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-				intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
-				startActivityForResult(intent, REQUEST_ENABLE);
+				if(!DeviceAdmin.isActive(getActivity()))
+				{
+					Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+					intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+					startActivityForResult(intent, REQUEST_ENABLE);
+				}
+				else
+				{
+					mDPM.removeActiveAdmin(mAdminName);
+				}
 			}
-			else
+
+			if(key.equals("usage_access"))
 			{
-				mDPM.removeActiveAdmin(mAdminName);
+				Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+				startActivity(intent);
+			}
+
+			if(key.equals("icon_theme_en"))
+			{
+				updateTheme();
+				onResume();
+				Intent service = new Intent(getActivity(),SPenService.class);
+				getActivity().stopService(service);
+				getActivity().startService(service);
+				service = new Intent(getActivity(),HeadsetService.class);
+				getActivity().stopService(service);
+				getActivity().startService(service);
+				SPenFragment.updateTheme(getActivity());
+				HeadsetFragment.updateTheme(getActivity());
 			}
 		}
-		if(key.equals("icon_theme_en"))
+		catch (Exception e)
 		{
-			updateTheme();
-			onResume();
-			Intent service = new Intent(getActivity(),SPenService.class);
-			getActivity().stopService(service);
-			getActivity().startService(service);
-			service = new Intent(getActivity(),HeadsetService.class);
-			getActivity().stopService(service);
-			getActivity().startService(service);
-			SPenFragment.updateTheme(getActivity());
-			HeadsetFragment.updateTheme(getActivity());
+			Log.e("Note Buddy", e.getMessage());
 		}
 	}
 	

@@ -290,8 +290,6 @@ public class Utilities {
 				if(Blacklist.check_bl(currentApp, service, button_mode))
 					return;
 			}
-			else
-				Toast.makeText(service, "Please upgrade to android 22 or higher for this feature to work",Toast.LENGTH_LONG).show();
 
 			LaunchableItem item = new LaunchableItem(str);
 			if(item.load(service.getApplicationContext()))

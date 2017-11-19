@@ -8,6 +8,11 @@
                             android:summary="@string/dev_admin_summary"
                             android:defaultValue="false"
                             android:key="devadmin" />
+
+    <com.tushar.spen_helper.CustomSwitchPreference android:title="@string/usage_access"
+        android:summary="@string/usage_access_summary"
+        android:defaultValue="false"
+        android:key="usage_access" />
     
     <com.tushar.spen_helper.CustomSwitchPreference android:title="@string/icon_theme_en_title"
                             android:defaultValue="false"
