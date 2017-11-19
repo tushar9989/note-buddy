@@ -260,6 +260,11 @@ public class Utilities {
 			{
 				currentApp = null;
 				bl_possible = false;
+
+				if(Blacklist.blacklistEnabled())
+				{
+					Toast.makeText(service, "Usage Stats permission needed for the blacklist to work! Please enable from the general tab.", Toast.LENGTH_SHORT).show();
+				}
 			}
 			else
 			{

@@ -39,7 +39,7 @@ public class SPenService extends Service {
 	BroadcastReceiver mReceiver;
 	static String selection,alt_selection;
 	static String notiftext;
-	String current2="Ignore";
+	String current2 = "Ignore";
 	static boolean penOut = false;
 	static PendingIntent pint[] = new PendingIntent[6];
 	MediaPlayer mp = new MediaPlayer();
@@ -297,10 +297,6 @@ public class SPenService extends Service {
 				{
 					packages.add(stats.getPackageName());
 				}
-			}
-			else
-			{
-				Toast.makeText(ctx, "Usage Stats permission needed for this feature! Please enable from the general tab.", Toast.LENGTH_SHORT).show();
 			}
 
 			return packages;

@@ -125,9 +125,14 @@ public class Blacklist extends Activity {
 		editor.apply();
 	}
 	
-	static boolean check_bl(String pkg,Context ctx, boolean button_mode) {
+	static boolean check_bl(String pkg, Context ctx, boolean button_mode) {
 		load_bl(ctx, button_mode);
 		return apps != null && apps.contains(pkg);
+	}
+
+	static boolean blacklistEnabled()
+	{
+		return apps != null && apps.size() > 0;
 	}
 	
 	static void load_bl(Context ctx, boolean button_mode)
