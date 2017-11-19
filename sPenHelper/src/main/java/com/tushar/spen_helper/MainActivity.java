@@ -4,11 +4,14 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -96,7 +99,24 @@ public class MainActivity extends Activity {
 		{
 			MainActivity.checkPro(this, LICENSE_REQ_CODE);
 		}
-		
+		setAlarm(this);
+	}
+
+	public static void setAlarm(Context ctx)
+	{
+		Intent intent = new Intent("com.tushar.spen_helper.WAKE_SERVICES");
+		boolean alarmUp = (PendingIntent.getBroadcast(ctx, 0,
+				intent,
+				PendingIntent.FLAG_NO_CREATE) != null);
+
+		if(!alarmUp)
+		{
+			AlarmManager alarmMgr = (AlarmManager)ctx.getSystemService(Context.ALARM_SERVICE);
+			PendingIntent alarmIntent = PendingIntent.getBroadcast(ctx, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+			alarmMgr.setInexactRepeating(AlarmManager.ELAPSED_REALTIME,
+					SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR,
+					AlarmManager.INTERVAL_HALF_HOUR, alarmIntent);
+		}
 	}
 	
 	class ProHandler extends Handler

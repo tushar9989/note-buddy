@@ -39,6 +39,7 @@ public class BootReceiver extends BroadcastReceiver {
         SharedPreferences.Editor edit2 = pref.edit();
         edit2.putLong("bootTime", bootTime);
         edit2.commit();
+		MainActivity.setAlarm(context);
 
 		enable = pref.getBoolean("enable", false);
 		henable = pref.getBoolean("henable", false);

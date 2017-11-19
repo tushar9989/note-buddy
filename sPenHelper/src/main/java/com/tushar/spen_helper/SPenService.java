@@ -1,38 +1,47 @@
 package com.tushar.spen_helper;
 
-import android.accessibilityservice.AccessibilityService;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
+import android.app.AppOpsManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Handler;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
-import android.view.accessibility.AccessibilityEvent;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-public class SPenService extends AccessibilityService {
+public class SPenService extends Service {
 
 	BroadcastReceiver mReceiver;
 	static String selection,alt_selection;
 	static String notiftext;
 	String current2="Ignore";
 	static boolean penOut = false;
-	static PendingIntent pint[]=new PendingIntent[6];
-	static ArrayList<String> runningApps = new ArrayList<>();
-	static String foregroundApp = null;
+	static PendingIntent pint[] = new PendingIntent[6];
 	MediaPlayer mp = new MediaPlayer();
 	protected static final Intent INTENT_REQUEST_REQUERY =
 			new Intent(com.tushar.spen_helper.Intent.ACTION_REQUEST_QUERY).putExtra(com.tushar.spen_helper.Intent.EXTRA_ACTIVITY,
@@ -41,29 +50,8 @@ public class SPenService extends AccessibilityService {
 	static Notification.Builder mBuilder2, mBuilder;
 	boolean wasScreenOn = true;
 	static boolean screen = true;
-	BroadcastReceiver ScreenReceiver;
+	BroadcastReceiver ScreenReceiver, buttonReceiver;
 	IntentFilter screenFilter;
-
-	@Override
-	public void onAccessibilityEvent(AccessibilityEvent event) {
-
-		if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED)
-		{
-			String pkg = String.valueOf(event.getPackageName());
-			//Log.d("NoteBuddy", "Window Package: " + pkg);
-			if(runningApps.contains(pkg))
-				runningApps.remove(pkg);
-			runningApps.add(0, pkg);
-			if(runningApps.size() > 10)
-				runningApps.remove(10);
-			foregroundApp = pkg;
-		}
-	}
-
-	@Override
-	public void onInterrupt() {
-
-	}
 
 	@Override
 	public void onCreate() {
@@ -203,16 +191,16 @@ public class SPenService extends AccessibilityService {
 					}
 					else
 					{
-						if(foregroundApp != null && pref.getBoolean("pro", false))
+						if(pref.getBoolean("pro", false))
 						{
-							if(pref.getBoolean("cbpref", false) && (foregroundApp.equals(selection) || foregroundApp.equals(alt_selection)))
+							if(pref.getBoolean("cbpref", false))
 							{
-								Utilities.LaunchComponent(runningApps.get(1), getApplicationContext());
+								List<String> runningApps = getTopPackages(SPenService.this);
+								if(runningApps.size() > 1 && (runningApps.get(0).equals(selection) || runningApps.get(0).equals(alt_selection)))
+								{
+									Utilities.LaunchComponent(runningApps.get(1), getApplicationContext());
+								}
 							}
-						}
-						else if(pref.getBoolean("pro", false))
-						{
-							Toast.makeText(getApplicationContext(), R.string.lollipop_auto_warning,Toast.LENGTH_LONG).show();
 						}
 					}
 
@@ -224,7 +212,7 @@ public class SPenService extends AccessibilityService {
 
 		IntentFilter buttonFilter = new IntentFilter();
 		buttonFilter.addAction("com.tushar.cm_spen.SPEN_EVENT");
-		BroadcastReceiver buttonReceiver = new BroadcastReceiver() {
+		buttonReceiver = new BroadcastReceiver() {
 
 			@Override
 			public void onReceive(Context context, Intent intent) {
@@ -259,7 +247,7 @@ public class SPenService extends AccessibilityService {
 		if(pref.getBoolean("sounden", false))
 		{
 			key = pref.getString(key, "");
-			if(key != null && !(key.equals("")))
+			if(!(key.equals("")))
 			{
 				try {
 					FileInputStream is2 = new FileInputStream(key);
@@ -287,6 +275,66 @@ public class SPenService extends AccessibilityService {
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+
+	public static List<String> getTopPackages(Context ctx){
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1)
+		{
+			List<String> packages = new ArrayList<>();
+
+			if(needPermissionForBlocking(ctx))
+			{
+				Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+				ctx.startActivity(intent);
+			}
+
+			if(!needPermissionForBlocking(ctx))
+			{
+				long ts = System.currentTimeMillis();
+				UsageStatsManager mUsageStatsManager = (UsageStatsManager)ctx.getSystemService(USAGE_STATS_SERVICE);
+				List<UsageStats> usageStats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, ts-60000, ts);
+				if (usageStats == null || usageStats.size() == 0) {
+					return new ArrayList<>();
+				}
+				Collections.sort(usageStats, new RecentUseComparator());
+
+				for(UsageStats stats: usageStats)
+				{
+					packages.add(stats.getPackageName());
+				}
+			}
+			else
+			{
+				Toast.makeText(ctx, "Usage Stats permission needed for this feature!", Toast.LENGTH_SHORT).show();
+			}
+
+			return packages;
+		}
+		else
+		{
+			Toast.makeText(ctx, "Please upgrade your android version to be able to use this feature", Toast.LENGTH_SHORT).show();
+			return new ArrayList<>();
+		}
+	}
+
+	public static boolean needPermissionForBlocking(Context context) {
+		try {
+			PackageManager packageManager = context.getPackageManager();
+			ApplicationInfo applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 0);
+			AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+			int mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, applicationInfo.uid, applicationInfo.packageName);
+			return  (mode != AppOpsManager.MODE_ALLOWED);
+		} catch (PackageManager.NameNotFoundException e) {
+			return true;
+		}
+	}
+
+	static class RecentUseComparator implements Comparator<UsageStats> {
+
+		@Override
+		public int compare(UsageStats lhs, UsageStats rhs) {
+			return (lhs.getLastTimeUsed() > rhs.getLastTimeUsed()) ? -1 : (lhs.getLastTimeUsed() == rhs.getLastTimeUsed()) ? 0 : 1;
 		}
 	}
 	
@@ -475,4 +523,13 @@ public class SPenService extends AccessibilityService {
 			unregisterReceiver(ScreenReceiver);
 		if(mReceiver != null)
 			unregisterReceiver(mReceiver);
-	}}
+		if(buttonReceiver != null)
+			unregisterReceiver(buttonReceiver);
+	}
+
+	@Nullable
+	@Override
+	public IBinder onBind(Intent intent) {
+		return null;
+	}
+}

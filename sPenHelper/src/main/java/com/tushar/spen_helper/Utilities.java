@@ -255,9 +255,16 @@ public class Utilities {
 		}
 		else
 		{
-			currentApp = SPenService.foregroundApp;
-			if(currentApp == null)
+			List<String> currentApplications = SPenService.getTopPackages(service.getApplicationContext());
+			if(currentApplications.size() == 0)
+			{
+				currentApp = null;
 				bl_possible = false;
+			}
+			else
+			{
+				currentApp = currentApplications.get(0);
+			}
 		}
 
 		if(pref.getBoolean("soff_al_enable", false))
@@ -284,7 +291,7 @@ public class Utilities {
 					return;
 			}
 			else
-				Toast.makeText(service, R.string.lollipop_bl_warning,Toast.LENGTH_LONG).show();
+				Toast.makeText(service, "Please upgrade to android 22 or higher for this feature to work",Toast.LENGTH_LONG).show();
 
 			LaunchableItem item = new LaunchableItem(str);
 			if(item.load(service.getApplicationContext()))

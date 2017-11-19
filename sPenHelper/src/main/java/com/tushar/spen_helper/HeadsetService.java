@@ -19,6 +19,8 @@ import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class HeadsetService extends Service {
 	BroadcastReceiver mRec;
 	static String hselection,headsettext;
@@ -201,11 +203,15 @@ public class HeadsetService extends Service {
 		}
 		else
 		{
-			if(SPenService.foregroundApp != null && boob.getBoolean("pro", false))
+			if(boob.getBoolean("pro", false))
 			{
-				if(hcbpref && SPenService.foregroundApp.equals(hselection))
+				if(hcbpref)
 				{
-					Utilities.LaunchComponent(SPenService.runningApps.get(1), getApplicationContext());
+					List<String> runningApps = SPenService.getTopPackages(HeadsetService.this);
+					if(runningApps.size() > 1 && runningApps.get(0).equals(hselection))
+					{
+						Utilities.LaunchComponent(runningApps.get(1), getApplicationContext());
+					}
 				}
 			}
 			else if(boob.getBoolean("pro", false))
