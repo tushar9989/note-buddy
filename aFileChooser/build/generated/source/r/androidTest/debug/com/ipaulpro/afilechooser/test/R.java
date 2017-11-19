@@ -24,6 +24,7 @@ public final class R {
         public static final int explorer_fragment=0x7f090000;
         public static final int file_icon=0x7f090001;
         public static final int file_name=0x7f090002;
+        public static final int load_path=0x7f090006;
         public static final int reset_default=0x7f090005;
         public static final int set_default=0x7f090004;
     }

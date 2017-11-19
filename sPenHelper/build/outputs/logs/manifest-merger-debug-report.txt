@@ -19,22 +19,22 @@ uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:7:5-81
 	android:name
 		ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:7:22-78
-uses-permission#android.permission.GET_TASKS
-ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:8:5-68
-	android:name
-		ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:8:22-65
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:9:5-75
+ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:8:5-75
 	android:name
-		ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:9:22-72
+		ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:8:22-72
 uses-permission#android.permission.BLUETOOTH
-ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:10:5-68
+ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:9:5-68
 	android:name
-		ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:10:22-65
+		ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:9:22-65
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:11:5-80
+ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:10:5-80
 	android:name
-		ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:11:22-77
+		ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:10:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:11:5-81
+	android:name
+		ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:11:22-78
 uses-permission#android.permission.BIND_ACCESSIBILITY_SERVICE
 ADDED from C:\Users\Tushar\AndroidstudioProjects\SPenHelper\sPenHelper\src\main\AndroidManifest.xml:12:5-85
 	android:name

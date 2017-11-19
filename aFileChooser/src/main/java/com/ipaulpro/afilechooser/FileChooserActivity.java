@@ -81,11 +81,11 @@ public class FileChooserActivity extends FragmentActivity implements
 		setContentView(R.layout.chooser);
 
 		if (ContextCompat.checkSelfPermission(this,
-				Manifest.permission.READ_EXTERNAL_STORAGE)
+				Manifest.permission.WRITE_EXTERNAL_STORAGE)
 				!= PackageManager.PERMISSION_GRANTED) {
 
 			ActivityCompat.requestPermissions(this,
-					new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
 					permissionRequestCode);
 		}
 
