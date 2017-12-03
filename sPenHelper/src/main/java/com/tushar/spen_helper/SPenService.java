@@ -112,9 +112,9 @@ public class SPenService extends Service {
 			@SuppressWarnings("deprecation")
 			@Override
 			public void onReceive(Context arg0, Intent i) {
-				long bootTime = pref.getLong("bootTime", 10);
+				long bootTime = pref.getLong("bootTime", System.currentTimeMillis());
 
-				if(System.currentTimeMillis() - bootTime <= 2000)
+				if(System.currentTimeMillis() - bootTime <= 15000)
 					return;
 				if(!i.getBooleanExtra("penInsert", false) && !isInitialStickyBroadcast())
 				{
@@ -250,7 +250,15 @@ public class SPenService extends Service {
 			if(!(key.equals("")))
 			{
 				try {
-					FileInputStream is2 = new FileInputStream(key);
+					FileInputStream is2;
+					try
+					{
+						is2 = this.openFileInput(key);
+					}
+					catch (Exception ignored)
+					{
+						is2 = new FileInputStream(key);
+					}
 					mp.reset();
 					mp.setDataSource(is2.getFD());
 					int currVolume = pref.getInt("volume", 10);
@@ -264,6 +272,7 @@ public class SPenService extends Service {
 						mp.setVolume(1 - log1, 1 - log1);
 					mp.start();
 					Handler h = new Handler();
+					is2.close();
 					h.postDelayed(new Runnable() {
 						@Override
 						public void run()

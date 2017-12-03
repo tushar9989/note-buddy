@@ -406,7 +406,7 @@ public class Utilities {
 				if(items[position].name.equals(act.getString(R.string.sel_sound_ext)))
 				{
 					Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-					i.setType("audio/*");
+					i.setType("*/*");
 					frag.startActivityForResult(i, requestCode);
 				}
 				else if(items[position].name.equals(act.getString(R.string.sel_sound)))

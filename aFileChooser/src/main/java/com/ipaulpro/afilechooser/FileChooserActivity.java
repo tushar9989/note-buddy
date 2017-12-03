@@ -31,6 +31,7 @@ import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -59,7 +60,7 @@ public class FileChooserActivity extends FragmentActivity implements
 
 	public static final String PATH = "path";
 	static final int permissionRequestCode = 121;
-	public static String EXTERNAL_BASE_PATH = /*Environment.getExternalStorageDirectory().getAbsolutePath()*/"/mnt";
+	public static String EXTERNAL_BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
 	private FragmentManager mFragmentManager;
 	private static boolean isValid = false;
 	private static File selectedFile;
@@ -80,18 +81,15 @@ public class FileChooserActivity extends FragmentActivity implements
 
 		setContentView(R.layout.chooser);
 
-		if (ContextCompat.checkSelfPermission(this,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE)
-				!= PackageManager.PERMISSION_GRANTED) {
-
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 			ActivityCompat.requestPermissions(this,
-					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+					new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
 					permissionRequestCode);
 		}
 
 		mFragmentManager = getSupportFragmentManager();
 		mFragmentManager.addOnBackStackChangedListener(this);
-		EXTERNAL_BASE_PATH = PreferenceManager.getDefaultSharedPreferences(this).getString("path", /*Environment.getExternalStorageDirectory().getAbsolutePath()*/"/mnt");
+		EXTERNAL_BASE_PATH = PreferenceManager.getDefaultSharedPreferences(this).getString("path", Environment.getExternalStorageDirectory().getAbsolutePath());
 		//if (savedInstanceState == null) {
 			mPath = EXTERNAL_BASE_PATH;
 			addFragment(mPath);
@@ -282,8 +280,8 @@ public class FileChooserActivity extends FragmentActivity implements
 	    if(id == R.id.reset_default)
 	    {
 	    	SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(FileChooserActivity.this).edit();
-	    	edit.putString("path", /*Environment.getExternalStorageDirectory().getAbsolutePath()*/ "/mnt");
-			replaceFragment("/mnt");
+	    	edit.putString("path", Environment.getExternalStorageDirectory().getAbsolutePath());
+			replaceFragment(Environment.getExternalStorageDirectory().getAbsolutePath());
 	    	edit.commit();
 	    	Toast.makeText(FileChooserActivity.this, "Default Path has been Reset", Toast.LENGTH_LONG).show();
 	    	return true;

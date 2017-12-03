@@ -327,37 +327,87 @@ public class SPenFragment extends PreferenceFragment implements OnSharedPreferen
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_DETACH || requestCode == REQUEST_ATTACH) {
                 MediaPlayer mp = new MediaPlayer();
+                String filename = null;
+                boolean external = false;
                 if (data.getData() != null) {
                     try {
-                        InputStream is = getActivity().getContentResolver().openInputStream(data.getData());
+                        if(data.getData().getScheme().equals("file"))
+                        {
+                            filename = data.getData().getPath();
+                            FileInputStream is2 = new FileInputStream(filename);
+                            mp.setDataSource(is2.getFD());
+                        }
+                        else
+                        {
+                            external = true;
+                            InputStream is = getActivity().getContentResolver().openInputStream(data.getData());
+                            String[] projection = {MediaStore.MediaColumns.DISPLAY_NAME};
+                            Cursor metaCursor = getActivity().getContentResolver().query(data.getData(), projection, null, null, null);
 
-                        String filename = requestCode == REQUEST_ATTACH ? "attachSound" : "detachSound";
+                            if(metaCursor != null && is != null)
+                            {
+                                metaCursor.moveToFirst();
 
-                        File file = new File(getActivity().getExternalFilesDir(
-                                null), filename);
+                                filename = metaCursor.getString(0);
 
-                        CopyStream(is, new FileOutputStream(file));
+                                metaCursor.close();
 
-                        FileInputStream is2 = new FileInputStream(file.getAbsolutePath());
+                                CopyStream(is, this.getActivity().openFileOutput(filename, 0));
 
-                        mp.setDataSource(is2.getFD());
+                                FileInputStream is2 = this.getActivity().openFileInput(filename);
+
+                                mp.setDataSource(is2.getFD());
+
+                                is2.close();
+
+                                is.close();
+
+                                try
+                                {
+                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+                                    String oldFile;
+                                    if (requestCode == REQUEST_DETACH) {
+                                        oldFile = preferences.getString("det_s", null);
+                                    } else {
+                                        oldFile = preferences.getString("ins_s", null);
+                                    }
+                                    this.getActivity().deleteFile(oldFile);
+                                }
+                                catch (Exception ignored) {}
+                            }
+                            else
+                            {
+                                throw new Exception("Invalid File!");
+                            }
+                        }
+
                         mp.prepare();
                         if (mp.getDuration() > 10000) {
                             Toast.makeText(getActivity(), R.string.sound_too_long, Toast.LENGTH_LONG).show();
                         } else {
                             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
                             if (requestCode == REQUEST_DETACH) {
-                                editor.putString("det_s", file.getAbsolutePath());
-                                det_s.setSummary(file.getAbsolutePath());
+                                editor.putString("det_s", filename);
+                                det_s.setSummary(filename);
                             } else {
-                                editor.putString("ins_s", file.getAbsolutePath());
-                                ins_s.setSummary(file.getAbsolutePath());
+                                editor.putString("ins_s", filename);
+                                ins_s.setSummary(filename);
                             }
                             editor.apply();
-                            //Toast.makeText(getActivity(),R.string.sound_sel, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),R.string.sound_sel, Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
                         Toast.makeText(getActivity(), R.string.invalid_file, Toast.LENGTH_LONG).show();
+                        if(external)
+                        {
+                            try
+                            {
+                                this.getActivity().deleteFile(filename);
+                            }
+                            catch (Exception ignored) {}
+                        }
+
                     }
                 }
             } else {
