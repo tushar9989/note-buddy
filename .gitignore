@@ -1,15 +1,36 @@
-SPenHelper.iml
-projectFilesBackup/
-sPenHelper/sPenHelper.iml
-aFileChooser/aFileChooser.iml
-.gradle/
-.idea/
-aFileChooser/build/
-sPenHelper/build/
-build/
-gradle/
-gradlew
-gradlew.bat
-import-summary.txt
+#built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
 local.properties
-sPenHelper/lint.xml
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+
+# Android Studio
+*.iml
+.idea
+#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+.gradle
+build/
+.navigation
+captures/
+output.json 
+
+#NDK
+obj/
+.externalNativeBuild
